@@ -47,9 +47,8 @@ struct Message: Codable {
     }
 }
 
-if let message = CodableHelper.decode(Message.self, from: jsonData1) {
-    print("message = \(message)")
-}
+let result1 = CodableHelper.decode(Message.self, from: jsonData1)
+CodableHelper.printDecodeResult(result: result1)
 
 /*:
  We can also use the CodingKeys to selectively deserialize only certain fields from the JSON.
@@ -71,8 +70,7 @@ let jsonData2 = """
  But since we don't provide keys for them, thn they don't get serialized to the Message struct
  */
 
-if let message2 = CodableHelper.decode(Message.self, from: jsonData2) {
-    print("message2 = \(message2)")
-}
+let result2 = CodableHelper.decode(Message.self, from: jsonData2)
+CodableHelper.printDecodeResult(result: result2)
 
 //: [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)

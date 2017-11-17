@@ -28,17 +28,13 @@ let json = """
 }
 """.data(using: .utf8)!
 
-if let message = CodableHelper.decode(Message.self, from: json) {
-    print("message = \(message)")
-}
+let result1 = CodableHelper.decode(Message.self, from: json)
+CodableHelper.printDecodeResult(result: result1)
 
 let outMessage = Message(text: "Outgoing message", sequenceNum: 22, type: .bidirectional)
 
-if let encodedMessage = CodableHelper.encode(outMessage) {
-    if let encodedMessageStr = String(bytes: encodedMessage, encoding: .utf8) {
-        print("encoded JSON = \n\(encodedMessageStr)\n")
-    }
-}
+let result2 = CodableHelper.encode(outMessage)
+CodableHelper.printEncodeResult(result: result2)
 
 
 

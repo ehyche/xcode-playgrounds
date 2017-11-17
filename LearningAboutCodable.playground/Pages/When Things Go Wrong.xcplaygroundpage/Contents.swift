@@ -30,9 +30,8 @@ let jsonData1 = """
 /*:
  In that case, we get a Type Mismatch error upon decoding, and we have to catch that exception.
  */
-if let deal = CodableHelper.decode(Deal.self, from: jsonData1) {
-    print("deal = \(deal)")
-}
+let decodeResult1 = CodableHelper.decode(Deal.self, from: jsonData1)
+CodableHelper.printDecodeResult(result: decodeResult1)
 
 /*:
  Another potential error would be if we got a null value when we were not expecting one.
@@ -48,9 +47,8 @@ let jsonData2 = """
  In that case, we get a Value Not Found error.
  */
 
-if let deal2 = CodableHelper.decode(Deal.self, from: jsonData2) {
-    print("deal2 = \(deal2)")
-}
+let decodeResult2 = CodableHelper.decode(Deal.self, from: jsonData2)
+CodableHelper.printDecodeResult(result: decodeResult2)
 
 /*:
  What if we have a non-optional type in our struct, but we don't get a value for that property?
@@ -66,9 +64,8 @@ let jsonData3 = """
  In that case, we get a Key Not Found error.
  */
 
-if let deal3 = CodableHelper.decode(Deal.self, from: jsonData3) {
-    print("deal3 = \(deal3)")
-}
+let decodeResult3 = CodableHelper.decode(Deal.self, from: jsonData3)
+CodableHelper.printDecodeResult(result: decodeResult3)
 
 /*:
  Another error would be if the Data value are corrupted. In the example below, note that "data" is just random characters, not valid Base64.
@@ -91,9 +88,8 @@ let jsonData4 = """
  In that case, we get a Data Corrupted error.
  */
 
-if let deal4 = CodableHelper.decode(DealWithData.self, from: jsonData4) {
-    print("deal4 = \(deal4)")
-}
+let decodeResult4 = CodableHelper.decode(DealWithData.self, from: jsonData4)
+CodableHelper.printDecodeResult(result: decodeResult4)
 
 /*:
  Similarly, what if the Date we try to decode is invalid?
@@ -116,9 +112,8 @@ let jsonData5 = """
  In that case, we also get a Data Corrupted error.
  */
 
-if let deal5 = CodableHelper.decode(DealWithDate.self, from: jsonData5) {
-    print("deal5 = \(deal5)")
-}
+let decodeResult5 = CodableHelper.decode(DealWithDate.self, from: jsonData5)
+CodableHelper.printDecodeResult(result: decodeResult5)
 
 /*:
  And what happens if the JSON itself is invalid?
@@ -134,9 +129,8 @@ let jsonData6 = """
  In that case, we get a general error
  */
 
-if let deal6 = CodableHelper.decode(Deal.self, from: jsonData6) {
-    print("deal6 = \(deal6)")
-}
+let decodeResult6 = CodableHelper.decode(Deal.self, from: jsonData6)
+CodableHelper.printDecodeResult(result: decodeResult6)
 
 
 //: [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)

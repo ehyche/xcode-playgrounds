@@ -29,9 +29,8 @@ let jsonData1 = """
 /*:
  Now all we have to do is tell the JSONDecoder to decode it.
  */
-if let deal1 = CodableHelper.decode(Deal.self, from: jsonData1) {
-    print("deal1 = \(deal1)")
-}
+let decodeResult1 = CodableHelper.decode(Deal.self, from: jsonData1)
+CodableHelper.printDecodeResult(result: decodeResult1)
 
 /*:
  Standard library types like String, Int, Bool, Float, and Double support Codable, as do Foundation types like Date, Data, and URL.
@@ -65,9 +64,8 @@ let jsonData2 = """
 /*:
  For Date and Data, we need to tell JSONDecoder how to interpret the JSON.
  */
-if let deal2 = CodableHelper.decode(BigDeal.self, from: jsonData2) {
-    print("deal2 = \(deal2)")
-}
+let decodeResult2 = CodableHelper.decode(BigDeal.self, from: jsonData2)
+CodableHelper.printDecodeResult(result: decodeResult2)
 
 /*:
  You can have embedded types as well. As long as all of your types conform to Codable, then the containing object conforms to Codable.
@@ -118,8 +116,13 @@ let jsonData3 = """
 }
 """.data(using: .utf8)!
 
-if let deal3 = CodableHelper.decode(BigDealWithPriceSummary.self, from: jsonData3) {
-    print("deal3 = \(deal3)")
+let decodeResult3 = CodableHelper.decode(BigDealWithPriceSummary.self, from: jsonData3)
+switch decodeResult3 {
+    case .success(let deal):
+        print("Decode Success: deal = \(deal)")
+    case .failure(let error):
+        print("Decoding Error: error = \(String(describing: error))")
+        break
 }
 
 //: [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
